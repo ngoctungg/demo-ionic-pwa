@@ -25,7 +25,7 @@
           >
         </p>
         <ion-button @click="setOpen(true)">Show Toast</ion-button>
-        <ion-button @click="takePicture()">Take picture</ion-button>
+        <ion-button router-link="/democamera" >Take picture</ion-button>
         <ion-toast
           :is-open="isOpenRef"
           message="Your settings have been saved."
@@ -33,8 +33,6 @@
           @didDismiss="setOpen(false)"
         >
         </ion-toast>
-
-        <div id="preview" class="cameraPreview"></div>
       </div>
     </ion-content>
   </ion-page>
@@ -51,12 +49,6 @@ import {
   IonButton,
 } from "@ionic/vue";
 import { defineComponent, ref } from "vue";
-// import { Camera, CameraResultType, CameraSource } from "@capacitor/camera";
-import {
-  CameraPreview,
-  // CameraPreviewOptions,
-} from "@capacitor-community/camera-preview";
-
 export default defineComponent({
   name: "HomePage",
   components: {
@@ -75,24 +67,6 @@ export default defineComponent({
     return { isOpenRef, setOpen };
   },
   methods: {
-    async takePicture() {
-      // const image = await Camera.getPhoto({
-      //   quality: 90,
-      //   allowEditing: true,
-      //   resultType: CameraResultType.Uri,
-      //   source: CameraSource.Camera,
-      // });
-
-      // this.myImage = image.webPath;
-      const cameraPreviewOptions = {
-        position: "rear",
-        // height: 1920,
-        // width: 1080,
-        parent:"preview",
-        class:"cameraPreview"
-      };
-      CameraPreview.start(cameraPreviewOptions);
-    },
   },
 });
 </script>
