@@ -33,6 +33,8 @@
           @didDismiss="setOpen(false)"
         >
         </ion-toast>
+
+        <div id="preview" class="cameraPreview"></div>
       </div>
     </ion-content>
   </ion-page>
@@ -49,7 +51,11 @@ import {
   IonButton,
 } from "@ionic/vue";
 import { defineComponent, ref } from "vue";
-import { Camera, CameraResultType, CameraSource } from "@capacitor/camera";
+// import { Camera, CameraResultType, CameraSource } from "@capacitor/camera";
+import {
+  CameraPreview,
+  // CameraPreviewOptions,
+} from "@capacitor-community/camera-preview";
 
 export default defineComponent({
   name: "HomePage",
@@ -70,14 +76,22 @@ export default defineComponent({
   },
   methods: {
     async takePicture() {
-      const image = await Camera.getPhoto({
-        quality: 90,
-        allowEditing: true,
-        resultType: CameraResultType.Uri,
-        source: CameraSource.Camera,
-      });
+      // const image = await Camera.getPhoto({
+      //   quality: 90,
+      //   allowEditing: true,
+      //   resultType: CameraResultType.Uri,
+      //   source: CameraSource.Camera,
+      // });
 
-      this.myImage = image.webPath;
+      // this.myImage = image.webPath;
+      const cameraPreviewOptions = {
+        position: "rear",
+        // height: 1920,
+        // width: 1080,
+        parent:"preview",
+        class:"cameraPreview"
+      };
+      CameraPreview.start(cameraPreviewOptions);
     },
   },
 });
