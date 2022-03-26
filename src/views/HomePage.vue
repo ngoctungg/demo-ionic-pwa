@@ -25,7 +25,10 @@
           >
         </p>
         <ion-button @click="setOpen(true)">Show Toast</ion-button>
-        <ion-button router-link="/democamera" >Take picture</ion-button>
+        <ion-button router-link="/democamera" 
+        router-direction="forward"
+          >Take picture</ion-button
+        >
         <ion-toast
           :is-open="isOpenRef"
           message="Your settings have been saved."
@@ -66,8 +69,7 @@ export default defineComponent({
 
     return { isOpenRef, setOpen };
   },
-  methods: {
-  },
+  methods: {},
 });
 </script>
 
