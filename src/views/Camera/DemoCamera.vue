@@ -59,6 +59,10 @@ export default defineComponent({
       enableHighResolution: true,
     });
   },
+  beforeUnmount() {
+     CameraPreview.stop();
+     this.cameraPosition = "front";
+  },
   methods: {
     clickBtnFlip() {
       CameraPreview.stop();
