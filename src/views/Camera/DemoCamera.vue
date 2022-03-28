@@ -52,6 +52,7 @@ export default defineComponent({
     };
   },
   mounted() {
+    CameraPreview.stop();
     CameraPreview.start({
       parent: "cameraPreview",
       position: "front",
@@ -60,8 +61,12 @@ export default defineComponent({
     });
   },
   beforeUnmount() {
-     CameraPreview.stop();
-     this.cameraPosition = "front";
+    CameraPreview.stop();
+    this.cameraPosition = "front";
+  },
+  unmounted() {
+    console.log("unmounted");
+    CameraPreview.stop();
   },
   methods: {
     clickBtnFlip() {
