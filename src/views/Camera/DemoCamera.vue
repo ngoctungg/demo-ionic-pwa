@@ -2,9 +2,6 @@
   <ion-page>
     <ion-header translucent>
       <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-back-button default-href="/"></ion-back-button>
-        </ion-buttons>
         <ion-title>Page Two</ion-title>
       </ion-toolbar>
     </ion-header>
@@ -34,7 +31,6 @@ import {
   IonHeader,
   IonContent,
   IonFooter,
-  IonButtons,
   IonToolbar,
   IonButton,
 } from "@ionic/vue";
@@ -47,7 +43,6 @@ export default defineComponent({
     IonHeader,
     IonContent,
     IonFooter,
-    IonButtons,
     IonToolbar,
     IonButton,
   },
