@@ -84,7 +84,7 @@ export default defineComponent({
 <style>
 .container {
   height: 100%;
-  background-color: rgb(255, 0, 255);
+  background-color: rgb(255, 255, 255);
 }
 .mx-0 {
   margin-left: 0px;
