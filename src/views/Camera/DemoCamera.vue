@@ -8,8 +8,6 @@
 
     <ion-content class="mx-0 my-0">
       <div class="container" id="cameraPreview">
-        <!-- image -->
-        &nbsp;
       </div>
     </ion-content>
 
@@ -67,6 +65,7 @@ export default defineComponent({
   unmounted() {
     console.log("unmounted");
     CameraPreview.stop();
+    document.getElementById("cameraPreview").remove();
   },
   methods: {
     clickBtnFlip() {
