@@ -51,6 +51,11 @@ export default defineComponent({
     IonToolbar,
     IonButton,
   },
+  data() {
+    return {
+      cameraPosition: "front",
+    };
+  },
   mounted() {
     CameraPreview.start({
       parent: "cameraPreview",
@@ -61,9 +66,14 @@ export default defineComponent({
   methods: {
     clickBtnFlip() {
       CameraPreview.stop();
+      if (this.cameraPosition === "front") {
+        this.cameraPosition = "rear";
+      } else {
+        this.cameraPosition = "front";
+      }
       CameraPreview.start({
         parent: "cameraPreview",
-        position: "rear",
+        position: this.cameraPosition,
         disableAudio: true,
       });
     },
