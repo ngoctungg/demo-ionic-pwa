@@ -19,6 +19,7 @@
     <ion-footer>
       <ion-toolbar>
         <ion-title>Footer</ion-title>
+        <ion-button shape="round" fill="outline" @click="clickBtnFlip()">Flip</ion-button>
       </ion-toolbar>
     </ion-footer>
   </ion-page>
@@ -31,7 +32,7 @@ import {
   IonContent,
   IonFooter,
   IonButtons,
-  IonToolbar,
+  IonToolbar,IonButton 
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import { CameraPreview } from "@capacitor-community/camera-preview";
@@ -43,7 +44,7 @@ export default defineComponent({
     IonContent,
     IonFooter,
     IonButtons,
-    IonToolbar,
+    IonToolbar,IonButton 
   },
   mounted() {
     CameraPreview.start({
@@ -52,6 +53,11 @@ export default defineComponent({
       disableAudio:true
     });
   },
+  methods:{
+    clickBtnFlip(){
+      CameraPreview.flip();
+    }
+  }
 });
 </script>
 
