@@ -48,7 +48,7 @@ export default defineComponent({
   mounted() {
     CameraPreview.start({
       parent: "cameraPreview",
-      position: "rear",
+      position: "front",
       disableAudio:true
     });
   },
