@@ -63,7 +63,7 @@ export default defineComponent({
       CameraPreview.stop();
       CameraPreview.start({
         parent: "cameraPreview",
-        position: "front",
+        position: "rear",
         disableAudio: true,
       });
     },
