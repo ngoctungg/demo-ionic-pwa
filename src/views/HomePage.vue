@@ -38,8 +38,15 @@
           @didDismiss="setOpen(false)"
         >
         </ion-toast>
-        <input type="file" id="my_file" />
+        <input type="file" id="my_file" hidden />
       </div>
+      <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+        <ion-fab-button
+          @click="actionClickInput()"
+        >
+          <ion-icon :icon="camera"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
     </ion-content>
   </ion-page>
 </template>
@@ -55,6 +62,7 @@ import {
   IonButton,
 } from "@ionic/vue";
 import { defineComponent, ref } from "vue";
+import { camera } from 'ionicons/icons';
 
 export default defineComponent({
   name: "HomePage",
@@ -71,9 +79,13 @@ export default defineComponent({
     const isOpenRef = ref(false);
     const setOpen = (state) => (isOpenRef.value = state);
 
-    return { isOpenRef, setOpen };
+    return { isOpenRef, setOpen,camera };
   },
-  methods: {},
+  methods: {
+    actionClickInput(){
+      document.getElementById('my_file').click();
+    }
+  },
 });
 </script>
 
