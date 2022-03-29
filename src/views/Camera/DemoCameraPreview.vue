@@ -54,51 +54,26 @@ export default defineComponent({
   },
   ionViewDidEnter() {
     console.log("Home page  ionViewDidEnter");
-    CameraPreview.stop()
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((res) => {
-        console.log(res);
-      });
+    CameraPreview.stop();
     CameraPreview.start({
       parent: "cameraPreview",
       position: "front",
       disableAudio: true,
       toBack: true,
       enableHighResolution: true,
-    })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((res) => {
-        console.log(res);
-      });
+    });
   },
   ionViewDidLeave() {
     console.log("Home page did leave");
-    CameraPreview.stop()
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((res) => {
-        console.log(res);
-      });
+    CameraPreview.stop();
     // if (document.getElementById("cameraPreview")) {
     //   document.getElementById("cameraPreview").remove();
     // }
   },
   ionViewWillEnter() {
     console.log("Home page  ionViewWillEnter");
-
-    CameraPreview.stop()
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((res) => {
-        console.log(res);
-      });
-    this.cameraPosition = "front";
+    // CameraPreview.stop();
+    // this.cameraPosition = "front";
     // if (document.getElementById("cameraPreviewContainer")) {
     //   const div = document.createElement("div");
     //   div.id = "cameraPreview";
