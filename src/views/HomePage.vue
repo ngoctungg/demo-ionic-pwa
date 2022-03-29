@@ -28,7 +28,9 @@
         <ion-button router-link="/demoCameraPreview" router-direction="forward"
           >CameraPreview</ion-button
         >
-        <ion-button router-link="/democamera" router-direction="forward">Get Photo</ion-button>
+        <ion-button router-link="/democamera" router-direction="forward"
+          >Get Photo</ion-button
+        >
         <ion-toast
           :is-open="isOpenRef"
           message="Your settings have been saved."
@@ -36,8 +38,7 @@
           @didDismiss="setOpen(false)"
         >
         </ion-toast>
-        <input type="file" accept="image/*" capture="camera" />
-
+        <input type="file" id="my_file" />
       </div>
     </ion-content>
   </ion-page>
@@ -72,8 +73,7 @@ export default defineComponent({
 
     return { isOpenRef, setOpen };
   },
-  methods: {
-  },
+  methods: {},
 });
 </script>
 
