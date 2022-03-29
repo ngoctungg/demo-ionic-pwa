@@ -6,7 +6,7 @@
       </ion-toolbar>
     </ion-header>
 
-    <ion-content class="mx-0 my-0">
+    <ion-content class="mx-0 my-0" id="cameraPreviewContainer">
       <div class="container" id="cameraPreview"></div>
     </ion-content>
 
@@ -53,21 +53,49 @@ export default defineComponent({
     };
   },
   mounted() {
-    CameraPreview.stop();
+    CameraPreview.stop()
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((res) => {
+        console.log(res);
+      });
     CameraPreview.start({
       parent: "cameraPreview",
       position: "front",
       disableAudio: true,
       enableHighResolution: true,
-    });
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((res) => {
+        console.log(res);
+      });
   },
   beforeUnmount() {
     this.cameraPosition = "front";
+    if (document.getElementById("cameraPreviewContainer")) {
+      const div = document.createElement("div");
+      div.id = "cameraPreview";
+      div.classList.add("container");
+      document.getElementById("cameraPreviewContainer").appendChild(div);
+    }
+
+    // document.getElementById("cameraPreviewContainer").remove();
   },
   unmounted() {
     console.log("unmounted");
-    CameraPreview.stop();
-    // document.getElementById("cameraPreview").remove();
+    CameraPreview.stop()
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((res) => {
+        console.log(res);
+      });
+    if (document.getElementById("cameraPreview")) {
+      document.getElementById("cameraPreview").remove();
+    }
   },
   methods: {
     clickBtnFlip() {
@@ -92,7 +120,7 @@ export default defineComponent({
         .catch((res) => {
           console.log(res);
         });
-      console.log(stop);
+      console.log("stop");
     },
   },
 });
