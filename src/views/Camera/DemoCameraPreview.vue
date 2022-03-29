@@ -59,7 +59,7 @@ export default defineComponent({
       parent: "cameraPreview",
       position: "front",
       disableAudio: true,
-      toBack: true,
+      toBack: false,
       enableHighResolution: true,
     });
   },
@@ -96,7 +96,7 @@ export default defineComponent({
         parent: "cameraPreview",
         position: this.cameraPosition,
         disableAudio: true,
-        toBack: true,
+        toBack: false,
         enableHighResolution: true,
       });
     },
