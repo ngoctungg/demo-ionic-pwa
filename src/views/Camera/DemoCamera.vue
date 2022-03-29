@@ -101,5 +101,10 @@ export default defineComponent({
       close,
     };
   },
+  methods:{
+      takepicture(){
+
+      }
+  },
 });
 </script>

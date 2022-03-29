@@ -36,6 +36,8 @@
           @didDismiss="setOpen(false)"
         >
         </ion-toast>
+        <input type="file" accept="image/*" capture="camera" />
+
       </div>
     </ion-content>
   </ion-page>
