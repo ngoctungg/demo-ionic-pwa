@@ -25,10 +25,10 @@
           >
         </p>
         <ion-button @click="setOpen(true)">Show Toast</ion-button>
-        <ion-button router-link="/democamera" 
-        router-direction="forward"
-          >Take picture</ion-button
+        <ion-button router-link="/demoCameraPreview" router-direction="forward"
+          >CameraPreview</ion-button
         >
+        <ion-button router-link="/democamera" router-direction="forward">Get Photo</ion-button>
         <ion-toast
           :is-open="isOpenRef"
           message="Your settings have been saved."
@@ -52,6 +52,7 @@ import {
   IonButton,
 } from "@ionic/vue";
 import { defineComponent, ref } from "vue";
+
 export default defineComponent({
   name: "HomePage",
   components: {
@@ -69,7 +70,8 @@ export default defineComponent({
 
     return { isOpenRef, setOpen };
   },
-  methods: {},
+  methods: {
+  },
 });
 </script>
 

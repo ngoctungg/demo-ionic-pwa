@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
-import HomePage from '../views/HomePage.vue'
-import DemoCamera from '../views/Camera/DemoCamera'
+import HomePage from '../views/HomePage.vue';
+import DemoCameraPreview from '../views/Camera/DemoCameraPreview';
+import DemoCamera from '../views/Camera/DemoCamera';
 
 const routes = [
   {
@@ -11,6 +12,11 @@ const routes = [
     path: '/home',
     name: 'Home',
     component: HomePage
+  },
+  {
+    path: '/demoCameraPreview',
+    name: 'DemoCameraPreview',
+    component: DemoCameraPreview
   },
   {
     path: '/democamera',

@@ -1,143 +1,105 @@
 <template>
   <ion-page>
-    <ion-header translucent>
+    <ion-header>
       <ion-toolbar>
-        <ion-title>Page Two</ion-title>
+        <ion-title>Photo Gallery</ion-title>
       </ion-toolbar>
     </ion-header>
+    <ion-content :fullscreen="true">
+      <ion-header collapse="condense">
+        <ion-toolbar>
+          <ion-title size="large">Photo Gallery</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6" :key="photo" v-for="photo in photos">
+            <ion-img
+              :src="photo.webviewPath"
+              @click="showActionSheet(photo)"
+            ></ion-img>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
 
-    <ion-content class="mx-0 my-0" id="cameraPreviewContainer">
-      <div class="container" id="cameraPreview"></div>
+      <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+        <ion-fab-button @click="takePhoto()">
+          <ion-icon :icon="camera"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
     </ion-content>
-
-    <ion-footer>
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-button fill="solid" @click="clickBtnFlip()"> Change </ion-button>
-        </ion-buttons>
-        <ion-title>Footer</ion-title>
-        <ion-buttons slot="end">
-          <ion-button fill="solid" @click="clickBtnStop()"> Stop </ion-button>
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-footer>
   </ion-page>
 </template>
 
 <script>
+import { camera, trash, close } from 'ionicons/icons';
 import {
+  actionSheetController,
   IonPage,
   IonHeader,
-  IonContent,
-  IonFooter,
+  IonFab,
+  IonFabButton,
+  IonIcon,
   IonToolbar,
-  IonButton,
-  IonButtons,
-} from "@ionic/vue";
-import { defineComponent } from "vue";
-import { CameraPreview } from "@capacitor-community/camera-preview";
-
+  IonTitle,
+  IonContent,
+  IonImg,
+  IonGrid,
+  IonRow,
+  IonCol,
+} from '@ionic/vue';
+import { usePhotoGallery } from '../../composables/usePhotoGallery';
+import { defineComponent} from 'vue';
 export default defineComponent({
+  name: 'Tab2-6',
   components: {
-    IonPage,
     IonHeader,
-    IonContent,
-    IonFooter,
+    IonFab,
+    IonIcon,
+    IonFabButton,
     IonToolbar,
-    IonButton,
-    IonButtons,
+    IonTitle,
+    IonContent,
+    IonPage,
+    IonGrid,
+    IonRow,
+    IonCol,
+    IonImg,
   },
-  data() {
-    return {
-      cameraPosition: "front",
+  setup() {
+    const { photos, takePhoto, deletePhoto } = usePhotoGallery();
+    const showActionSheet = async (photo) => {
+      const actionSheet = await actionSheetController.create({
+        header: 'Photos',
+        buttons: [
+          {
+            text: 'Delete',
+            role: 'destructive',
+            icon: trash,
+            handler: () => {
+              deletePhoto(photo);
+            },
+          },
+          {
+            text: 'Cancel',
+            icon: close,
+            role: 'cancel',
+            handler: () => {
+              // Nothing to do, action sheet is automatically closed
+            },
+          },
+        ],
+      });
+      await actionSheet.present();
     };
-  },
-  mounted() {
-    CameraPreview.stop()
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((res) => {
-        console.log(res);
-      });
-    CameraPreview.start({
-      parent: "cameraPreview",
-      position: "front",
-      disableAudio: true,
-      enableHighResolution: true,
-    })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((res) => {
-        console.log(res);
-      });
-  },
-  beforeUnmount() {
-    this.cameraPosition = "front";
-    if (document.getElementById("cameraPreviewContainer")) {
-      const div = document.createElement("div");
-      div.id = "cameraPreview";
-      div.classList.add("container");
-      document.getElementById("cameraPreviewContainer").appendChild(div);
-    }
-
-    // document.getElementById("cameraPreviewContainer").remove();
-  },
-  unmounted() {
-    console.log("unmounted");
-    CameraPreview.stop()
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((res) => {
-        console.log(res);
-      });
-    if (document.getElementById("cameraPreview")) {
-      document.getElementById("cameraPreview").remove();
-    }
-  },
-  methods: {
-    clickBtnFlip() {
-      CameraPreview.stop();
-      if (this.cameraPosition === "front") {
-        this.cameraPosition = "rear";
-      } else {
-        this.cameraPosition = "front";
-      }
-      CameraPreview.start({
-        parent: "cameraPreview",
-        position: this.cameraPosition,
-        disableAudio: true,
-        enableHighResolution: true,
-      });
-    },
-    clickBtnStop() {
-      CameraPreview.stop()
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((res) => {
-          console.log(res);
-        });
-      console.log("stop");
-    },
+    return {
+      photos,
+      takePhoto,
+      showActionSheet,
+      camera,
+      trash,
+      close,
+    };
   },
 });
 </script>
-
-<style>
-.container {
-  height: 100%;
-  background-color: rgb(255, 255, 255);
-}
-.mx-0 {
-  margin-left: 0px;
-  margin-right: 0px;
-}
-
-.my-0 {
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
-</style>
