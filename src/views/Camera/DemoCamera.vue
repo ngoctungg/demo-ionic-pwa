@@ -67,7 +67,7 @@ export default defineComponent({
   unmounted() {
     console.log("unmounted");
     CameraPreview.stop();
-    document.getElementById("cameraPreview").remove();
+    // document.getElementById("cameraPreview").remove();
   },
   methods: {
     clickBtnFlip() {
