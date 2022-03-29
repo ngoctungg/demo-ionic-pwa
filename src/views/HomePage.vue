@@ -38,12 +38,11 @@
           @didDismiss="setOpen(false)"
         >
         </ion-toast>
-        <input type="file" id="my_file" hidden />
+        <input type="file" id="my_file" hidden @change="onFileChange" />
+        <img v-if="url" :src="url" />
       </div>
       <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-        <ion-fab-button
-          @click="actionClickInput()"
-        >
+        <ion-fab-button @click="actionClickInput()">
           <ion-icon :icon="camera"></ion-icon>
         </ion-fab-button>
       </ion-fab>
@@ -62,7 +61,7 @@ import {
   IonButton,
 } from "@ionic/vue";
 import { defineComponent, ref } from "vue";
-import { camera } from 'ionicons/icons';
+import { camera } from "ionicons/icons";
 
 export default defineComponent({
   name: "HomePage",
@@ -79,12 +78,21 @@ export default defineComponent({
     const isOpenRef = ref(false);
     const setOpen = (state) => (isOpenRef.value = state);
 
-    return { isOpenRef, setOpen,camera };
+    return { isOpenRef, setOpen, camera };
+  },
+  data() {
+    return {
+      url: "",
+    };
   },
   methods: {
-    actionClickInput(){
-      document.getElementById('my_file').click();
-    }
+    actionClickInput() {
+      document.getElementById("my_file").click();
+    },
+    onFileChange(e) {
+      const file = e.target.files[0];
+      this.url = URL.createObjectURL(file);
+    },
   },
 });
 </script>
