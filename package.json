@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@awesome-cordova-plugins/camera": "^5.40.0",
+    "@awesome-cordova-plugins/camera-preview": "^5.40.0",
     "@awesome-cordova-plugins/core": "^5.40.0",
     "@capacitor-community/camera-preview": "^2.1.0",
     "@capacitor/android": "3.4.3",
@@ -25,6 +26,7 @@
     "@ionic/vue": "^6.0.0",
     "@ionic/vue-router": "^6.0.0",
     "cordova-plugin-camera": "^6.0.0",
+    "cordova-plugin-camera-preview": "^0.12.3",
     "core-js": "^3.6.5",
     "vue": "^3.2.21",
     "vue-router": "^4.0.12"

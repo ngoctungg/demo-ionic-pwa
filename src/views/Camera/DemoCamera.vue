@@ -7,17 +7,18 @@
     </ion-header>
 
     <ion-content class="mx-0 my-0">
-      <div class="container" id="cameraPreview">
-      </div>
+      <div class="container" id="cameraPreview"></div>
     </ion-content>
 
     <ion-footer>
       <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button fill="solid" @click="clickBtnFlip()"> Change </ion-button>
+        </ion-buttons>
         <ion-title>Footer</ion-title>
-        <ion-button shape="round" fill="outline" @click="clickBtnFlip()"
-          >Change</ion-button
-        >
-        <ion-icon name="camera-reverse-sharp"></ion-icon>
+        <ion-buttons slot="end">
+          <ion-button fill="solid" @click="clickBtnStop()"> Stop </ion-button>
+        </ion-buttons>
       </ion-toolbar>
     </ion-footer>
   </ion-page>
@@ -31,6 +32,7 @@ import {
   IonFooter,
   IonToolbar,
   IonButton,
+  IonButtons,
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import { CameraPreview } from "@capacitor-community/camera-preview";
@@ -43,6 +45,7 @@ export default defineComponent({
     IonFooter,
     IonToolbar,
     IonButton,
+    IonButtons,
   },
   data() {
     return {
@@ -59,7 +62,6 @@ export default defineComponent({
     });
   },
   beforeUnmount() {
-    CameraPreview.stop();
     this.cameraPosition = "front";
   },
   unmounted() {
@@ -81,6 +83,16 @@ export default defineComponent({
         disableAudio: true,
         enableHighResolution: true,
       });
+    },
+    clickBtnStop() {
+      CameraPreview.stop()
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((res) => {
+          console.log(res);
+        });
+      console.log(stop);
     },
   },
 });
