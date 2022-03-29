@@ -84,9 +84,9 @@ export default defineComponent({
       .catch((res) => {
         console.log(res);
       });
-    if (document.getElementById("cameraPreview")) {
-      document.getElementById("cameraPreview").remove();
-    }
+    // if (document.getElementById("cameraPreview")) {
+    //   document.getElementById("cameraPreview").remove();
+    // }
   },
   ionViewWillEnter() {
     console.log("Home page  ionViewWillEnter");
@@ -99,12 +99,12 @@ export default defineComponent({
         console.log(res);
       });
     this.cameraPosition = "front";
-    if (document.getElementById("cameraPreviewContainer")) {
-      const div = document.createElement("div");
-      div.id = "cameraPreview";
-      div.classList.add("container");
-      document.getElementById("cameraPreviewContainer").appendChild(div);
-    }
+    // if (document.getElementById("cameraPreviewContainer")) {
+    //   const div = document.createElement("div");
+    //   div.id = "cameraPreview";
+    //   div.classList.add("container");
+    //   document.getElementById("cameraPreviewContainer").appendChild(div);
+    // }
   },
   ionViewWillLeave() {
     console.log("Home page will leave");
