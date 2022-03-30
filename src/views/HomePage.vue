@@ -121,7 +121,7 @@ export default defineComponent({
     },
     nativeCallback() {
       //  alert("Call");
-      Bridge.callNative(this.msg,'sum');
+      Bridge.callNative({a:1,b:2},'sum');
     },
   },
 });
