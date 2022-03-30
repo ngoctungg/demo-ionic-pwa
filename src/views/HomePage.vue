@@ -31,6 +31,9 @@
         <ion-button router-link="/democamera" router-direction="forward"
           >Get Photo</ion-button
         >
+         <ion-button @click="callNativeEx()"
+          >Call native</ion-button
+        >
         <ion-toast
           :is-open="isOpenRef"
           message="Your settings have been saved."
@@ -40,6 +43,11 @@
         </ion-toast>
         <input type="file" id="my_file" hidden @change="onFileChange" />
         <img v-if="url" :src="url" />
+        <ion-item>
+          <ion-label position="fixed">Fixed Label</ion-label>
+          <ion-input :value="msg"></ion-input>
+        </ion-item>
+        
       </div>
       <ion-fab vertical="bottom" horizontal="center" slot="fixed">
         <ion-fab-button @click="actionClickInput()">
@@ -59,9 +67,12 @@ import {
   IonToolbar,
   IonToast,
   IonButton,
+  IonInput,
+  IonItem,
 } from "@ionic/vue";
 import { defineComponent, ref } from "vue";
 import { camera } from "ionicons/icons";
+import Bridge from "../../src/utils/bridge";
 
 export default defineComponent({
   name: "HomePage",
@@ -73,6 +84,8 @@ export default defineComponent({
     IonToolbar,
     IonToast,
     IonButton,
+    IonInput,
+    IonItem,
   },
   setup() {
     const isOpenRef = ref(false);
@@ -83,6 +96,7 @@ export default defineComponent({
   data() {
     return {
       url: "",
+      msg:"",
     };
   },
   methods: {
@@ -93,6 +107,9 @@ export default defineComponent({
       const file = e.target.files[0];
       this.url = URL.createObjectURL(file);
     },
+    callNativeEx(){
+      Bridge.callNative(this.msg);
+    }
   },
 });
 </script>
