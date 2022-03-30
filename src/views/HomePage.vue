@@ -31,9 +31,7 @@
         <ion-button router-link="/democamera" router-direction="forward"
           >Get Photo</ion-button
         >
-         <ion-button @click="callNativeEx()"
-          >Call native</ion-button
-        >
+        <ion-button @click="callNativeEx()">Call native</ion-button>
         <ion-toast
           :is-open="isOpenRef"
           message="Your settings have been saved."
@@ -41,13 +39,19 @@
           @didDismiss="setOpen(false)"
         >
         </ion-toast>
-        <input type="file" id="my_file" @change="onFileChange" name="file" accept="image/*" capture/>
+        <input
+          type="file"
+          id="my_file"
+          @change="onFileChange"
+          name="file"
+          accept="image/*"
+          capture
+        />
         <img v-if="url" :src="url" />
         <ion-item>
           <ion-label position="fixed">Fixed Label</ion-label>
-          <ion-input v-model="msg"></ion-input>
+          <ion-input v-model="msg" id="msgion"></ion-input>
         </ion-item>
-        
       </div>
       <ion-fab vertical="bottom" horizontal="center" slot="fixed">
         <ion-fab-button @click="actionClickInput()">
@@ -90,13 +94,15 @@ export default defineComponent({
   setup() {
     const isOpenRef = ref(false);
     const setOpen = (state) => (isOpenRef.value = state);
-
-    return { isOpenRef, setOpen, camera };
+    window.showSum = function showSum(a) {
+      document.getElementById("msgion").value = a;
+    };
+    return { isOpenRef, setOpen, camera, };
   },
   data() {
     return {
       url: "",
-      msg:"",
+      msg: "",
     };
   },
   methods: {
@@ -106,12 +112,15 @@ export default defineComponent({
     onFileChange(e) {
       const file = e.target.files[0];
       this.url = URL.createObjectURL(file);
+      console.log(file);
     },
-    callNativeEx(){
-      Bridge.callNative(this.msg);
-    }
+    callNativeEx() {
+      //  alert("Call");
+      Bridge.callNative(this.msg,'nvShowToast');
+    },
   },
 });
+/* eslint-disable */
 </script>
 
 <style scoped>
