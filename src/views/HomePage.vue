@@ -41,7 +41,7 @@
           @didDismiss="setOpen(false)"
         >
         </ion-toast>
-        <input type="file" id="my_file" @change="onFileChange" name="file" accept="image/*"/>
+        <input type="file" id="my_file" @change="onFileChange" name="file" accept="image/*" capture/>
         <img v-if="url" :src="url" />
         <ion-item>
           <ion-label position="fixed">Fixed Label</ion-label>
