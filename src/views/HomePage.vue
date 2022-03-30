@@ -32,6 +32,7 @@
           >Get Photo</ion-button
         >
         <ion-button @click="callNativeEx()">Call native</ion-button>
+        <ion-button @click="nativeCallback()">Native callback</ion-button>
         <ion-toast
           :is-open="isOpenRef"
           message="Your settings have been saved."
@@ -117,6 +118,10 @@ export default defineComponent({
     callNativeEx() {
       //  alert("Call");
       Bridge.callNative(this.msg,'nvShowToast');
+    },
+    nativeCallback() {
+      //  alert("Call");
+      Bridge.callNative(this.msg,'sum');
     },
   },
 });
