@@ -2,6 +2,7 @@
 export default {
   callNative(data) {
     //android
+    console.log(data);
     if (typeof Android !== "undefined" && Android !== null) {
         Android.nvShowToast(data);
     } else {

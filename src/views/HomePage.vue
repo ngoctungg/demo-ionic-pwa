@@ -45,7 +45,7 @@
         <img v-if="url" :src="url" />
         <ion-item>
           <ion-label position="fixed">Fixed Label</ion-label>
-          <ion-input :value="msg"></ion-input>
+          <ion-input v-model="msg"></ion-input>
         </ion-item>
         
       </div>
