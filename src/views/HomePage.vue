@@ -47,6 +47,7 @@
           name="file"
           accept="image/*"
           capture
+          hidden
         />
         <img v-if="url" :src="url" />
         <ion-item>
