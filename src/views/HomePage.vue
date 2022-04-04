@@ -33,6 +33,7 @@
         >
         <ion-button @click="callNativeEx()">Call native</ion-button>
         <ion-button @click="nativeCallback()">Native callback</ion-button>
+        <ion-button @click="callFacecheck()">Call Facecheck</ion-button>
         <ion-toast
           :is-open="isOpenRef"
           message="Your settings have been saved."
@@ -123,6 +124,9 @@ export default defineComponent({
       //  alert("Call");
       Bridge.callNative({a:1,b:2},'sum');
     },
+    callFacecheck(){
+      Bridge.callNative({},'callFacecheck');
+    }
   },
 });
 /* eslint-disable */

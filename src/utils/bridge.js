@@ -6,10 +6,13 @@ export default {
     if (typeof Android !== "undefined" && Android !== null) {
       switch (fnName) {
         case "nvShowToast":
-            Android.nvShowToast(JSON.stringify(data));
+          Android.nvShowToast(JSON.stringify(data));
           break;
         case "sum":
-            Android.sum(JSON.stringify(data));
+          Android.sum(JSON.stringify(data));
+          break;
+        case "callFacecheck":
+          Android.callFacecheck();
           break;
       }
     } else {
